@@ -11,7 +11,8 @@ while True:
         case 'show':
             for index, item in enumerate(todos):   # enumerate allows us to get both the index and the item
                 item = item.title()
-                print(index + 1, '-', item)
+                row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
+                print(row)
         case 'edit':
             number = int(input("Number of the todo to edit: "))   # Input always outputs a string
             number = number - 1
