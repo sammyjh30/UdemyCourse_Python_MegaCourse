@@ -9,12 +9,14 @@ while True:
             todo = input("Enter a todo: ")
             todos.append(todo)
         case 'show':
+            # If you try print out the result of enumerate, it is an object with an address, not designed to display
+            # When you enumerate list e.g. e = ["1", "2", "3"],
+            # it becomes a tuple => list(enumerate(e)) =  [(0, "1"), (1, "2"), (2, "3")]
+            # Note: str(e) would just print the object & address as a normal print
             for index, item in enumerate(todos):   # enumerate allows us to get both the index and the item
                 item = item.title()
                 row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
                 print(row)
-            print(f"Length is {index + 1}")        # index and item are still defined outside the loop. Values are the last set.
-            print(len(todos))                      # same result as above, better way to get length of list
         case 'edit':
             number = int(input("Number of the todo to edit: "))   # Input always outputs a string
             number = number - 1
