@@ -13,6 +13,8 @@ while True:
                 item = item.title()
                 row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
                 print(row)
+            print(f"Length is {index + 1}")        # index and item are still defined outside the loop. Values are the last set.
+            print(len(todos))                      # same result as above, better way to get length of list
         case 'edit':
             number = int(input("Number of the todo to edit: "))   # Input always outputs a string
             number = number - 1
