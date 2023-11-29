@@ -7,20 +7,24 @@ while True:
         case 'add':
             todo = input("Enter a todo: ") + "\n"  # to add new lines in txt file
 
-            file = open('todos.txt', 'r')
+            file = open('todos.txt', 'r')   # r = read -> remember the cursor moves to the end of the file
             todos = file.readlines()
-            file.close()    # good practice
+            file.close()
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w') # w = write overwrites contents, r = read
+            file = open('todos.txt', 'w') # w = write overwrites contents
             file.writelines(todos)
-            file.close()  # good practice
+            file.close()
         case 'show':
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
             for index, item in enumerate(todos):   # enumerate allows us to get both the index and the item
                 item = item.title()
                 row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
-                print(row)
+                print(row) # print also adds a new line
         case 'edit':
             number = int(input("Number of the todo to edit: "))   # Input always outputs a string
             number = number - 1
