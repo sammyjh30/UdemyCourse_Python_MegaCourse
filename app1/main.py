@@ -23,6 +23,12 @@ while True:
             todos = file.readlines()
             file.close()
 
+            new_todos = []
+
+            for item in todos:
+                new_item = item.strip('\n')
+                new_todos.append(new_todos)
+
             for index, item in enumerate(todos):   # enumerate allows us to get both the index and the item
                 item = item.title()
                 row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
