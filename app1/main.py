@@ -23,10 +23,10 @@ while True:
             todos = file.readlines()
             file.close()
 
-            new_todos = [item.strip('\n') for item in todos]  # list comprehension
+            # new_todos = [item.strip('\n') for item in todos]  # list comprehension
 
-            for index, item in enumerate(new_todos):   # enumerate allows us to get both the index and the item
-                item = item.title() # Could put the .strip('\n') here instead of creating a new list
+            for index, item in enumerate(todos):   # enumerate allows us to get both the index and the item
+                item = item.strip('\n').title()
                 row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
                 print(row) # print also adds a new line
         case 'edit':
