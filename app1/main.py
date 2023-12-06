@@ -7,21 +7,17 @@ while True:
         case 'add':
             todo = input("Enter a todo: ") + "\n"  # to add new lines in txt file
 
-            # absolute file path e.g. open(r'C:\Users\....\file.txt') -> r stops the \ from escape char
-            # relative path
-            file = open('files/todos.txt', 'r')   # r = read -> remember the cursor moves to the end of the file
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
+                # Don't need to close the file using a with-context-manager
 
             todos.append(todo)
 
-            file = open('files/todos.txt', 'w') # w = write overwrites contents
-            file.writelines(todos)
-            file.close()
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
         case 'show':
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             # new_todos = [item.strip('\n') for item in todos]  # list comprehension
 
