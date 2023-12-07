@@ -28,6 +28,10 @@ while True:
         case 'edit':
             number = int(input("Number of the todo to edit: "))   # Input always outputs a string
             number = number - 1
+
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
+
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo
         case 'complete':
