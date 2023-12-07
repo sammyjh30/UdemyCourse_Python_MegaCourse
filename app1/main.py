@@ -33,10 +33,26 @@ while True:
                 todos = file.readlines()
 
             new_todo = input("Enter new todo: ")
-            todos[number] = new_todo
+            todos[number] = new_todo + '\n'
+
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
+
         case 'complete':
             number = int(input("Number of the todo to complete: "))
-            todos.pop(number - 1)                # with pop(), default index is -1 = the last item on the list
+
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
+
+            index = number - 1
+            todo_to_remove = todos[index].strip('\n')
+            todos.pop(index)
+
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
+
+            message = f"Todo {todo_to_remove} was removed from the list."
+            print(message)
         case 'exit':
             break
         case _:      # Doesn't need to be defined prior. Can be variable, standard practice uses _
