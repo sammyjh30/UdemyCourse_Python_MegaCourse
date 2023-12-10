@@ -11,11 +11,11 @@ while True:
             todos = file.readlines()
             # Don't need to close the file using a with-context-manager
 
-        todos.append(todo)
+        todos.append(todo + '\n')
 
         with open('files/todos.txt', 'w') as file:
             file.writelines(todos)
-    if 'show' in user_action:
+    elif 'show' in user_action:         # elif Speeds up the code by reducing the number of checks -> not all checks are run after one is met
         with open('files/todos.txt', 'r') as file:
             todos = file.readlines()
 
@@ -26,8 +26,8 @@ while True:
             row = f"{index + 1}-{item}"       # f-strings, allow more control. e.g. no spaces between chars
             print(row) # print also adds a new line
 
-    if 'edit' in user_action:
-        number = int(input("Number of the todo to edit: "))   # Input always outputs a string
+    elif 'edit' in user_action:
+        number = int(user_action[5:])
         number = number - 1
 
         with open('files/todos.txt', 'r') as file:
@@ -39,8 +39,8 @@ while True:
         with open('files/todos.txt', 'w') as file:
             file.writelines(todos)
 
-    if 'complete' in user_action:
-        number = int(input("Number of the todo to complete: "))
+    elif 'complete' in user_action:
+        number = int(user_action[9:])
 
         with open('files/todos.txt', 'r') as file:
             todos = file.readlines()
@@ -55,7 +55,9 @@ while True:
         message = f"Todo {todo_to_remove} was removed from the list."
         print(message)
 
-    if 'exit' in user_action:
+    elif 'exit' in user_action:
         break
+    else:
+        print("Command is not valid.")
 
 print("Bye!")
