@@ -4,7 +4,7 @@ while True:
     user_action = user_action.strip()
 
     #  Use if ___ in -> to allow the value to be entered with the command
-    # or/and    in/not in operators
+    # or/and    in/not in operators -> "in" operator is also known as a "containment test"
     if 'add' in user_action or 'new' in user_action:
         todo = user_action[4:] # slicing, extracting all the characters FROM the char 4, blank after : means everything from the start point
 
