@@ -1,8 +1,8 @@
 # Custom functions are usually created above the main code + 2 spaces between code
 def get_todos():
     with open('files/todos.txt', 'r') as file:
-        todos = file.readlines()
-    return todos
+        todos_local = file.readlines() # var is only valid within this function. var can't be called elsewhere
+    return todos_local
 
 
 while True:
