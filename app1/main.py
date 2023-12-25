@@ -1,8 +1,13 @@
 # Custom functions are usually created above the main code + 2 spaces between code
-def get_todos(filepath):
-    with open(filepath, 'r') as file:
-        todos_local = file.readlines() # var is only valid within this function. var can't be called elsewhere
+def get_todos(filepath): # filepath -> parameter
+    with open(filepath, 'r') as file_local:
+        todos_local = file_local.readlines() # var is only valid within this function. var can't be called elsewhere
     return todos_local
+
+
+def write_todos(filepath, todos_arg): # Function does not need to return anything so it doesn't
+    with open(filepath, 'w') as file_local:
+        file_local.writelines(todos_arg)
 
 
 while True:
@@ -12,12 +17,11 @@ while True:
     if user_action.startswith("add"): # Prevents issues with editing a todo with "add" in it
         todo = user_action[4:] # slicing, extracting all the characters FROM the char 4, blank after : means everything from the start point
 
-        todos = get_todos('files/todos.txt')
+        todos = get_todos('files/todos.txt') # 'files/todos.txt' -> argument value. could be written as (filepath='files/todos.txt')
 
         todos.append(todo + '\n')
 
-        with open('files/todos.txt', 'w') as file:
-            file.writelines(todos)
+        write_todos('files/todos.txt', todos)
     elif user_action.startswith("show"):         # elif Speeds up the code by reducing the number of checks -> not all checks are run after one is met
         todos = get_todos('files/todos.txt')
 
@@ -38,8 +42,7 @@ while True:
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo + '\n'
 
-            with open('files/todos.txt', 'w') as file:
-                file.writelines(todos)
+            write_todos('files/todos.txt', todos)
         except ValueError:
             print("Your command is not valid.")
             continue
@@ -54,8 +57,7 @@ while True:
             todo_to_remove = todos[index].strip('\n')
             todos.pop(index)
 
-            with open('files/todos.txt', 'w') as file:
-                file.writelines(todos)
+            write_todos('files/todos.txt', todos)
 
             message = f"Todo {todo_to_remove} was removed from the list."
             print(message)
